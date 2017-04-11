@@ -119,9 +119,13 @@ namespace SocketAmigoServer
                 {
                     byte[] bufferReceive = new byte[1024];
                     int count = channelTab.Socket.Receive(bufferReceive);
-                    basicIOTab.update(bufferReceive, count);
-                    advancedIOTab.update(bufferReceive, count);
-                    chartTab.update(advancedIOTab.stringFormat, advancedIOTab.decodeResult, advancedIOTab.countDecode);
+                    if (advancedIOTab.isOpen == false)
+                        basicIOTab.update(bufferReceive, count);
+                    else
+                    {
+                        advancedIOTab.update(bufferReceive, count);
+                        chartTab.update(advancedIOTab.stringFormat, advancedIOTab.decodeResult, advancedIOTab.countDecode);
+                    }
                 }
                 catch (SocketException socketException)
                 {

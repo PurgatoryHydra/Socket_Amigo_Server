@@ -96,85 +96,82 @@ namespace SocketAmigoServer.Secondary_Tabs
 
         public void update(byte[] bufferReceive, int count)
         {
-            if (isOpen == true)
+            #region display
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0; i < count; i++)
+                builder.Append(bufferReceive[i].ToString("X2") + " ");
+            textReceive = "\r\n" + (builder.ToString());
+            freshReceiveBox();
+            #endregion
+            if (bufferReceive[0] == 0xAA && bufferReceive[1] == 0xAA)
             {
-                #region display
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < count; i++)
-                    builder.Append(bufferReceive[i].ToString("X2") + " ");
-                textReceive = "\r\n" + (builder.ToString());
-                freshReceiveBox();
-                #endregion
-                if (bufferReceive[0] == 0xAA && bufferReceive[1] == 0xAA)
+                List<String> listType = new List<String>();
+                int length = bufferReceive[3];
+                int countLength = 4;
+                countDecode[0] = countDecode[1] = 0;
+                for(int countRow = 0; countRow < 6;countRow++)
                 {
-                    List<String> listType = new List<String>();
-                    int length = bufferReceive[3];
-                    int countLength = 4;
-                    countDecode[0] = countDecode[1] = 0;
-                    for(int countRow = 0; countRow < 6;countRow++)
+                    for (int countColumn = 0; countColumn < 5; countColumn++)
                     {
-                        for (int countColumn = 0; countColumn < 5; countColumn++)
+                        if (countLength >= length + 4)
+                            break;
+                        countDecode[1]++;
+                        stringFormat[countRow, countColumn] = (String)getComboValue(countRow, countColumn);
+                        switch (stringFormat[countRow, countColumn])
                         {
-                            if (countLength >= length + 4)
+                            #region Byte Decode
+                            case "UInt16":
+                                UInt16 _uint16;
+                                unsafe
+                                {
+                                    byte* pDes = (byte*)(&_uint16);
+                                    *pDes++ = bufferReceive[countLength+1];
+                                    *pDes++ = bufferReceive[countLength+0];
+                                }
+                                countLength += 2;
+                                setLabelValue(countRow, countColumn, _uint16.ToString());
+                                decodeResult[countRow, countColumn, 1] = _uint16;
                                 break;
-                            countDecode[1]++;
-                            stringFormat[countRow, countColumn] = (String)getComboValue(countRow, countColumn);
-                            switch (stringFormat[countRow, countColumn])
-                            {
-                                #region Byte Decode
-                                case "UInt16":
-                                    UInt16 _uint16;
-                                    unsafe
-                                    {
-                                        byte* pDes = (byte*)(&_uint16);
-                                        *pDes++ = bufferReceive[countLength+1];
-                                        *pDes++ = bufferReceive[countLength+0];
-                                    }
-                                    countLength += 2;
-                                    setLabelValue(countRow, countColumn, _uint16.ToString());
-                                    decodeResult[countRow, countColumn, 1] = _uint16;
-                                    break;
-                                case "UInt8":
-                                    byte _uint8;
-                                    unsafe
-                                    {
-                                        byte* pDes = (byte*)(&_uint8);
-                                        *pDes++ = bufferReceive[countLength+0];
-                                        countLength += 1;
-                                    }
-                                    setLabelValue(countRow, countColumn, _uint8.ToString());
-                                    decodeResult[countRow, countColumn, 1] = _uint8;
-                                    break;
-                                case "UInt32":
-                                    UInt32 _uint32;
-                                    unsafe
-                                    {
-                                        byte* pDes = (byte*)(&_uint32);
-                                        *pDes++ = bufferReceive[countLength + 3];
-                                        *pDes++ = bufferReceive[countLength + 2];
-                                        *pDes++ = bufferReceive[countLength + 1];
-                                        *pDes++ = bufferReceive[countLength + 0];
-                                    }
-                                    countLength += 4;
-                                    setLabelValue(countRow, countColumn, _uint32.ToString());
-                                    decodeResult[countRow, countColumn, 1] = _uint32;
-                                    break;
-                                case "Float":
-                                    float _float;
-                                    unsafe
-                                    {
-                                        byte* pDes = (byte*)(&_float);
-                                        *pDes++ = bufferReceive[countLength + 3];
-                                        *pDes++ = bufferReceive[countLength + 2];
-                                        *pDes++ = bufferReceive[countLength + 1];
-                                        *pDes++ = bufferReceive[countLength + 0];
-                                    }
-                                    countLength += 4;
-                                    setLabelValue(countRow, countColumn, _float.ToString());
-                                    decodeResult[countRow, countColumn, 1] = _float;
-                                    break;
-                                #endregion
-                            }
+                            case "UInt8":
+                                byte _uint8;
+                                unsafe
+                                {
+                                    byte* pDes = (byte*)(&_uint8);
+                                    *pDes++ = bufferReceive[countLength+0];
+                                    countLength += 1;
+                                }
+                                setLabelValue(countRow, countColumn, _uint8.ToString());
+                                decodeResult[countRow, countColumn, 1] = _uint8;
+                                break;
+                            case "UInt32":
+                                UInt32 _uint32;
+                                unsafe
+                                {
+                                    byte* pDes = (byte*)(&_uint32);
+                                    *pDes++ = bufferReceive[countLength + 3];
+                                    *pDes++ = bufferReceive[countLength + 2];
+                                    *pDes++ = bufferReceive[countLength + 1];
+                                    *pDes++ = bufferReceive[countLength + 0];
+                                }
+                                countLength += 4;
+                                setLabelValue(countRow, countColumn, _uint32.ToString());
+                                decodeResult[countRow, countColumn, 1] = _uint32;
+                                break;
+                            case "Float":
+                                float _float;
+                                unsafe
+                                {
+                                    byte* pDes = (byte*)(&_float);
+                                    *pDes++ = bufferReceive[countLength + 3];
+                                    *pDes++ = bufferReceive[countLength + 2];
+                                    *pDes++ = bufferReceive[countLength + 1];
+                                    *pDes++ = bufferReceive[countLength + 0];
+                                }
+                                countLength += 4;
+                                setLabelValue(countRow, countColumn, _float.ToString());
+                                decodeResult[countRow, countColumn, 1] = _float;
+                                break;
+                            #endregion
                         }
                     }
                 }
