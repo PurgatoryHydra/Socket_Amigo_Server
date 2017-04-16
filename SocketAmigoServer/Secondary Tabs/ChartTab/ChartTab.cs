@@ -67,15 +67,15 @@ namespace SocketAmigoServer.Secondary_Tabs.ChartTab
             series0.Points.AddY(1);
             series0.Points.AddY(2);*/
             
-            for (int row = 0; row < 3; row++)
+            for (int row = 0; row < 2; row++)
             {
-                for (int column = 0; column < 3; column++)
+                for (int column = 0; column < 9; column++)
                 {
-                    int newRow = (row * 3 + column) / 9;
-                    int newColumn = (row * 3 + column) % 9;
-                    series[newRow, newColumn, 1] = new Series();
-                    series[newRow, newColumn, 1].ChartType = SeriesChartType.Line;
-                    chart.Series.Add(series[newRow, newColumn, 1]);
+                    /*int newRow = (row * 3 + column) / 9;
+                    int newColumn = (row * 3 + column) % 9;*/
+                    series[row, column, 1] = new Series();
+                    series[row, column, 1].ChartType = SeriesChartType.Line;
+                    chart.Series.Add(series[row, column, 1]);
                 }
             }
         }
@@ -95,8 +95,10 @@ namespace SocketAmigoServer.Secondary_Tabs.ChartTab
                 {
                     if (countDecode[1] > 0)
                     {
-                        int newRow = (row * 3 + column) / 9;
-                        int newColumn = (row * 3 + column) % 9;
+                        int newRow = (row * 5 + column) / 9;
+                        int newColumn = (row * 5 + column) % 9;
+                        if (newRow == 2)
+                            break;
                         countTick++;
                         //if (countTick > 60)
                         switch(comboFormat[row, column])
