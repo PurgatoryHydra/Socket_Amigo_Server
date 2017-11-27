@@ -16,3 +16,12 @@ E:\Users\Duke\Documents\Workspace\visual studio 2010\Projects\SocketAmigoServer\
 E:\Users\Duke\Documents\Workspace\visual studio 2010\Projects\SocketAmigoServer\SocketAmigoServer\obj\Debug\SocketAmigoServer.FormMain.resources
 E:\Users\Duke\Documents\Workspace\visual studio 2010\Projects\SocketAmigoServer\SocketAmigoServer\obj\Debug\SocketAmigoServer.Properties.Resources.resources
 E:\Users\Duke\Documents\Workspace\visual studio 2010\Projects\SocketAmigoServer\SocketAmigoServer\obj\Debug\SocketAmigoServer.csproj.GenerateResource.Cache
+E:\Users\Duke\Documents\WorkSpace\VS\Socket_Amigo_Server\SocketAmigoServer\bin\Debug\SocketAmigoServer.exe.config
+E:\Users\Duke\Documents\WorkSpace\VS\Socket_Amigo_Server\SocketAmigoServer\obj\Debug\SocketAmigoServer.exe
+E:\Users\Duke\Documents\WorkSpace\VS\Socket_Amigo_Server\SocketAmigoServer\obj\Debug\SocketAmigoServer.pdb
+E:\Users\Duke\Documents\WorkSpace\VS\Socket_Amigo_Server\SocketAmigoServer\bin\Debug\SocketAmigoServer.exe
+E:\Users\Duke\Documents\WorkSpace\VS\Socket_Amigo_Server\SocketAmigoServer\bin\Debug\SocketAmigoServer.pdb
+E:\Users\Duke\Documents\WorkSpace\VS\Socket_Amigo_Server\SocketAmigoServer\obj\Debug\SocketAmigoServer.csprojResolveAssemblyReference.cache
+E:\Users\Duke\Documents\WorkSpace\VS\Socket_Amigo_Server\SocketAmigoServer\obj\Debug\SocketAmigoServer.FormMain.resources
+E:\Users\Duke\Documents\WorkSpace\VS\Socket_Amigo_Server\SocketAmigoServer\obj\Debug\SocketAmigoServer.Properties.Resources.resources
+E:\Users\Duke\Documents\WorkSpace\VS\Socket_Amigo_Server\SocketAmigoServer\obj\Debug\SocketAmigoServer.csproj.GenerateResource.Cache

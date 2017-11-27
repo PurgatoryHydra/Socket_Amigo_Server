@@ -46,7 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Coding.cs" />
+    <Compile Include="Connection.cs" />
+    <Compile Include="DataRecievedEventArgs.cs" />
+    <Compile Include="IConnection.cs" />
+    <Compile Include="ITab.cs" />
     <Compile Include="Mode.cs" />
+    <Compile Include="RawDataTab.cs" />
     <Compile Include="Secondary Tabs\AdvancedIOTab.cs" />
     <Compile Include="Secondary Tabs\BasicIOTab.cs" />
     <Compile Include="ChannelTab.cs" />
@@ -61,6 +67,7 @@
     <Compile Include="Secondary Tabs\ChartTab\ChartTab.cs" />
     <Compile Include="Secondary Tabs\ChartTab\CheckBoxChartTab.cs" />
     <Compile Include="SendType.cs" />
+    <Compile Include="SocketConnection.cs" />
     <Compile Include="SocketThreadParameter.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
