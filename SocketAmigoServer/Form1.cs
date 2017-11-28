@@ -46,8 +46,7 @@ namespace SocketAmigoServer
         private void FormMain_Load(object sender, EventArgs e)
         {
             List<IPAddress> listIP = (new SocketConnection()).getIPList();
-            for (int i = 0; i < listIP.Count; i++)
-                toolComboIP.Items.Add(listIP[i]);
+            toolComboIP.Items.AddRange(listIP.ToArray());
             toolComboIP.SelectedIndex = 0;
 
             toolLabelTCPNumber = new ToolStripLabel();
@@ -58,7 +57,6 @@ namespace SocketAmigoServer
             tabControlMain.TabPages.Add(rawDataTab.tabPage);
 
             strSec = Path.GetFileNameWithoutExtension(strFilePath);
-            //MessageBox.Show(getINIItem(strSec, "Mode"));
             try
             {
                 if (getINIItem(strSec, "Mode").Equals("Socket"))
