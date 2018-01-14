@@ -67,6 +67,7 @@
     <Compile Include="Secondary Tabs\ChartTab\ChartTab.cs" />
     <Compile Include="Secondary Tabs\ChartTab\CheckBoxChartTab.cs" />
     <Compile Include="SendType.cs" />
+    <Compile Include="ShoeRawDataTab.cs" />
     <Compile Include="SocketConnection.cs" />
     <Compile Include="SocketThreadParameter.cs" />
     <EmbeddedResource Include="Form1.resx">

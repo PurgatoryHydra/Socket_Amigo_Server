@@ -36,7 +36,7 @@ namespace SocketAmigoServer
 
         Object connection;
 
-        RawDataTab rawDataTab;
+        ShoeRawDataTab shoeRawDataTab;
 
         public FormMain()
         {
@@ -53,8 +53,9 @@ namespace SocketAmigoServer
             toolLabelTCPNumber.Text = "TCP Number:0";
             statusStripMain.Items.AddRange(new ToolStripItem[]{toolComboIP, toolLabelTCPNumber});
 
-            rawDataTab = new RawDataTab(tabControlMain.Size);
-            tabControlMain.TabPages.Add(rawDataTab.tabPage);
+            shoeRawDataTab = new ShoeRawDataTab(tabControlMain.Size);
+            tabControlMain.TabPages.Add(shoeRawDataTab.tabPage);
+
 
             strSec = Path.GetFileNameWithoutExtension(strFilePath);
             try
@@ -90,7 +91,7 @@ namespace SocketAmigoServer
             serialChannel.chartTab.update(serialChannel.advancedIOTab.stringFormat, serialChannel.advancedIOTab.decodeResult, serialChannel.advancedIOTab.countDecode);
         }
 
-        private void buttonOpen_Click(object sender, EventArgs e)
+        private void openClose()
         {
             if (radioButtonSocket.Enabled == true)
             {
@@ -104,7 +105,7 @@ namespace SocketAmigoServer
                     isOpen = true;
                     buttonOpen.Text = "Close";
                     connection = new SocketConnection((IPAddress)toolComboIP.SelectedItem, int.Parse(textBoxHostPort.Text));
-                    ((SocketConnection)connection).DataReceived += rawDataTab.OnDataRecieved;
+                    ((SocketConnection)connection).DataReceived += shoeRawDataTab.OnDataRecieved;
                 }
                 else
                 {
@@ -140,6 +141,11 @@ namespace SocketAmigoServer
             }
         }
 
+        private void buttonOpen_Click(object sender, EventArgs e)
+        {
+            openClose();
+        }
+
         private void radioButtonSocket_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonSocket.Checked)
@@ -158,6 +164,11 @@ namespace SocketAmigoServer
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             System.Environment.Exit(0);
+        }
+
+        private void ietm12ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openClose();
         }
     }
 }

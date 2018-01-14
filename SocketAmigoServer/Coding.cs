@@ -11,6 +11,7 @@ namespace SocketAmigoServer
         private int id;
         private int type;
         private int length;
+        private UInt32 counterTime;
         private byte[] data = new byte[1024];
 
         public Coding(byte[] rawData)
@@ -20,8 +21,9 @@ namespace SocketAmigoServer
                 type = rawData[2];
                 length = rawData[3];
                 id = rawData[4];
+                counterTime = rawData[5];
                 for (int i = 0; i < length; i++)
-                    data[i] = rawData[5 + i];
+                    data[i] = rawData[6 + i];
             }
             else
             {
@@ -47,6 +49,11 @@ namespace SocketAmigoServer
         public byte[] Data
         {
             get { return data; }
+        }
+
+        public uint CounterTime
+        {
+            get { return counterTime; }
         }
     }
 }

@@ -238,13 +238,14 @@
             // ietm12ToolStripMenuItem
             // 
             this.ietm12ToolStripMenuItem.Name = "ietm12ToolStripMenuItem";
-            this.ietm12ToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.ietm12ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.ietm12ToolStripMenuItem.Text = "Ietm11";
+            this.ietm12ToolStripMenuItem.Click += new System.EventHandler(this.ietm12ToolStripMenuItem_Click);
             // 
             // item12ToolStripMenuItem
             // 
             this.item12ToolStripMenuItem.Name = "item12ToolStripMenuItem";
-            this.item12ToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.item12ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.item12ToolStripMenuItem.Text = "Item12";
             // 
             // item2ToolStripMenuItem

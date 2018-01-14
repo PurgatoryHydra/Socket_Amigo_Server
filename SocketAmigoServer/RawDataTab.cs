@@ -75,6 +75,7 @@ namespace SocketAmigoServer
             for (int i = 0; i < coding.Length; i++)
                 builder.Append(coding.Data[i].ToString("X2") + " ");
             textReceive += builder.ToString();
+            textReceive += "\r\n";
             freshReceiveBox(coding.ID / 4, coding.ID % 4);
         }
 
